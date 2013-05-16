@@ -1,23 +1,15 @@
-
-
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonCryptor.h>
-#include "QR_Encode.h"
-#import "DataMatrix.h"
 
-const static int QR_ECLEVEL_AUTO =  0;
-const static int QR_ECLEVEL_H =     QR_LEVEL_H;
-const static int QR_ECLEVEL_M =     QR_LEVEL_M;
-const static int QR_ECLEVEL_L =     QR_LEVEL_L;
-const static int QR_ECLEVEL_Q =     QR_LEVEL_Q;
+@class DataMatrix;
 
-const static int QR_VERSION_AUTO =  -1;
-
-const static int BITS_PER_BYTE =    8;
-const static int BYTES_PER_PIXEL =  4;
-
-const static unsigned char WHITE =  0xff;
+#define kQREncoderLevelAuto         0
+#define kQREncoderLevelL            0
+#define kQREncoderLevelM            1
+#define kQREncoderLevelQ            2
+#define kQREncoderLevelH            3
+#define kQREncoderVersionAuto       -1
 
 @interface QREncoder : NSObject {
     

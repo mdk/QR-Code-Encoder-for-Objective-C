@@ -1,6 +1,10 @@
-
 #import "QREncoder.h"
+#include "QR_Encode.h"
+#import "DataMatrix.h"
 
+const static int BITS_PER_BYTE =    8;
+const static int BYTES_PER_PIXEL =  4;
+const static unsigned char WHITE =  0xff;
 
 @implementation QREncoder
 
