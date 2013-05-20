@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'QRCEncoder' target in the 'QRCEncoder' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

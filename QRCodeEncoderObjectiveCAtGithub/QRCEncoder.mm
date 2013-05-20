@@ -1,12 +1,12 @@
-#import "QREncoder.h"
+#import "QRCEncoder.h"
 #include "QR_Encode.h"
-#import "DataMatrix.h"
+#import "QRCDataMatrix.h"
 
 const static int BITS_PER_BYTE =    8;
 const static int BYTES_PER_PIXEL =  4;
 const static unsigned char WHITE =  0xff;
 
-@implementation QREncoder
+@implementation QRCEncoder
 
 + (NSData*)AESEncryptString:(NSString*)string withPassphrase:(NSString*)passphrase {
     if (passphrase.length>kCCKeySizeAES256) {
@@ -53,11 +53,11 @@ const static unsigned char WHITE =  0xff;
     return decryptedString;
 }
 
-+ (DataMatrix*)encodeCStringWithECLevel:(int)ecLevel version:(int)version cstring:(const char*)cstring {
++ (QRCDataMatrix*)encodeCStringWithECLevel:(int)ecLevel version:(int)version cstring:(const char*)cstring {
     CQR_Encode* encoder = new CQR_Encode;
     encoder->EncodeData(ecLevel, version, true, -1, cstring);
     int dimension = encoder->m_nSymbleSize;
-    DataMatrix* matrix = [[[DataMatrix alloc] initWith:dimension] autorelease];
+    QRCDataMatrix* matrix = [[[QRCDataMatrix alloc] initWith:dimension] autorelease];
     for (int y=0; y<dimension; y++) {
         for (int x=0; x<dimension; x++) {
             int v = encoder->m_byModuleData[y][x];
@@ -72,23 +72,23 @@ const static unsigned char WHITE =  0xff;
 
 }
 
-+ (DataMatrix*)encodeWithECLevel:(int)ecLevel version:(int)version string:(NSString *)string AESPassphrase:(NSString*)AESPassphrase {
-    NSData* encryptedString = [QREncoder AESEncryptString:string withPassphrase:AESPassphrase];
++ (QRCDataMatrix*)encodeWithECLevel:(int)ecLevel version:(int)version string:(NSString *)string AESPassphrase:(NSString*)AESPassphrase {
+    NSData* encryptedString = [QRCEncoder AESEncryptString:string withPassphrase:AESPassphrase];
     const unsigned int len = [encryptedString length];
     char cstring[len + 1];
     bzero(cstring, len + 1);
     [encryptedString getBytes:cstring length:len];
-    DataMatrix* matrix = [QREncoder encodeCStringWithECLevel:ecLevel version:version cstring:cstring];
+    QRCDataMatrix* matrix = [QRCEncoder encodeCStringWithECLevel:ecLevel version:version cstring:cstring];
     return matrix;
 }
 
-+ (DataMatrix*)encodeWithECLevel:(int)ecLevel version:(int)version string:(NSString *)string {
++ (QRCDataMatrix*)encodeWithECLevel:(int)ecLevel version:(int)version string:(NSString *)string {
     const char* cstring = [string cStringUsingEncoding:NSUTF8StringEncoding];
-    DataMatrix* matrix = [QREncoder encodeCStringWithECLevel:ecLevel version:version cstring:cstring];
+    QRCDataMatrix* matrix = [QRCEncoder encodeCStringWithECLevel:ecLevel version:version cstring:cstring];
     return matrix;
 }
 
-+ (UIImage*)renderDataMatrix:(DataMatrix*)matrix imageDimension:(int)imageDimension {
++ (UIImage*)renderQRCDataMatrix:(QRCDataMatrix*)matrix imageDimension:(int)imageDimension {
     
     const int bitsPerPixel = BITS_PER_BYTE * BYTES_PER_PIXEL;
     const int bytesPerLine = BYTES_PER_PIXEL * imageDimension;

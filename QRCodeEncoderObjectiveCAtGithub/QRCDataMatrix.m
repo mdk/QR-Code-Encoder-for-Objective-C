@@ -1,9 +1,9 @@
 
 
-#import "DataMatrix.h"
+#import "QRCDataMatrix.h"
 
 
-@implementation DataMatrix
+@implementation QRCDataMatrix
 
 - (id)initWith:(int)dimension {
     if ([super init]) {

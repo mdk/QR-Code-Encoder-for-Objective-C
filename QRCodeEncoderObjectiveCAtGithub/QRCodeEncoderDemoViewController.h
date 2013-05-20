@@ -5,8 +5,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QREncoder.h"
-#import "DataMatrix.h"
+#import "QRCEncoder.h"
+#import "QRCDataMatrix.h"
 
 @interface QRCodeEncoderDemoViewController : UIViewController {
     

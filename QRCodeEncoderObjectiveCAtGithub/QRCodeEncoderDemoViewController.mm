@@ -24,10 +24,10 @@
     NSString* aVeryLongURL = @"http://thelongestlistofthelongeststuffatthelongestdomainnameatlonglast.com/";
     
     //first encode the string into a matrix of bools, TRUE for black dot and FALSE for white. Let the encoder decide the error correction level and version
-    DataMatrix* qrMatrix = [QREncoder encodeWithECLevel:QR_ECLEVEL_AUTO version:QR_VERSION_AUTO string:aVeryLongURL];
+    QRCDataMatrix* qrMatrix = [QRCEncoder encodeWithECLevel:QR_ECLEVEL_AUTO version:QR_VERSION_AUTO string:aVeryLongURL];
     
     //then render the matrix
-    UIImage* qrcodeImage = [QREncoder renderDataMatrix:qrMatrix imageDimension:qrcodeImageDimension];
+    UIImage* qrcodeImage = [QRCEncoder renderQRCDataMatrix:qrMatrix imageDimension:qrcodeImageDimension];
     
     //put the image into the view
     UIImageView* qrcodeImageView = [[UIImageView alloc] initWithImage:qrcodeImage];

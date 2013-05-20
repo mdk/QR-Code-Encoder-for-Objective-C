@@ -3,7 +3,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface DataMatrix : NSObject {
+@interface QRCDataMatrix : NSObject {
     
     int dim;
     bool** data;
