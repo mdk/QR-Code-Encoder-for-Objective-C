@@ -115,7 +115,7 @@ const static unsigned char WHITE =  0xff;
             *(ptrData++) = transp;
         
         for(int mx=0; mx<matrixDimension; mx++) {
-            uint32_t clr = [matrix valueAt:mx y:my] ? black : white;
+            uint32_t clr = [matrix valueAt:mx y:my] ? black : transp;
             // draw one pixel line of data
             for(int c=pixelPerDot; c>0; c--) 
                 *(ptrData++) = clr;
