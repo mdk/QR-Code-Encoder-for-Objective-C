@@ -161,6 +161,23 @@ const static unsigned char WHITE =  0xff;
     return newImage;
 }
 
++ (unsigned char*)renderQRCDataMatrix:(QRCDataMatrix*)matrix dimension:(int*)dimension
+{
+    int matrixDimension = [matrix dimension];
+
+    if (dimension)
+        *dimension = matrixDimension;
+
+    unsigned char *rawData = (unsigned char *)malloc(matrixDimension * matrixDimension);
+    for(int my=0; my<matrixDimension; my++) {
+        for(int mx=0; mx<matrixDimension; mx++) {
+            rawData[(my * matrixDimension) + mx] = [matrix valueAt:mx y:my];
+        }
+    }
+    
+    return rawData;
+}
+
 void FLProviderReleaseData(void *info, const void *data, size_t size) {
     free((void *)data);
 }

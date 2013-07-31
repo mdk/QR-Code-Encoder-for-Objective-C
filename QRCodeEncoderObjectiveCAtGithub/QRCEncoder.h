@@ -20,6 +20,7 @@
 + (QRCDataMatrix*)encodeWithECLevel:(int)ecLevel version:(int)version string:(NSString*)string;
 
 + (UIImage*)renderQRCDataMatrix:(QRCDataMatrix*)matrix imageDimension:(int)imageDimension;
++ (unsigned char*)renderQRCDataMatrix:(QRCDataMatrix*)matrix dimension:(int*)dimension;
 
 @end
 
