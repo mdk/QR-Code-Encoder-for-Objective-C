@@ -5,6 +5,7 @@ Pod::Spec.new do |s|
   s.author = {
     'Ming Yang' => 'myang.git@gmail.com'
   }
+  s.requires_arc = false
   s.source = {
     :git => 'https://github.com/myang-git/QR-Code-Encoder-for-Objective-C.git'
   }
